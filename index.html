@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica Neuro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #07131a, #0c1f28, #102b35);
+      color: #eaf6fb;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 360px;
+      width: 100%;
+      margin-bottom: 25px;
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.12);
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #cde6ef;
+    }
+
+    .sobre {
+      margin-top: 45px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(122, 220, 255, 0.12);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .sobre h2,
+    .acoes h2,
+    .painel h2 {
+      color: #8ee7ff;
+      margin-bottom: 14px;
+      font-size: 1.5rem;
+    }
+
+    .sobre p {
+      color: #d5edf5;
+      line-height: 1.8;
+    }
+
+    .acoes {
+      margin-top: 45px;
+      text-align: center;
+    }
+
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .botao-acao {
+      background: linear-gradient(135deg, #0f2a35, #143846);
+      color: #ecfbff;
+      border: 1px solid rgba(111, 230, 255, 0.22);
+      border-radius: 16px;
+      padding: 18px 16px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.25s ease;
+      min-height: 74px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .botao-acao:hover,
+    .botao-acao:focus {
+      transform: translateY(-3px);
+      outline: none;
+      border-color: #7ee4ff;
+      box-shadow: 0 0 0 3px rgba(126, 228, 255, 0.12);
+    }
+
+    .painel {
+      margin-top: 35px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(122, 220, 255, 0.12);
+      border-radius: 18px;
+      padding: 28px;
+      display: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .painel.ativo {
+      display: block;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #dff6fb;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(126, 228, 255, 0.22);
+      background: #0e2028;
+      color: white;
+      font-size: 1rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #8ee7ff;
+      box-shadow: 0 0 0 3px rgba(142, 231, 255, 0.12);
+    }
+
+    .btn-enviar {
+      background: #8ee7ff;
+      color: #08202b;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-enviar:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .resultado,
+    .mensagem {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(142, 231, 255, 0.08);
+      border: 1px solid rgba(142, 231, 255, 0.2);
+      color: #e8fbff;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0 30px;
+      color: #b6d5df;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .botoes {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <img src="logo-clinica-neuro.jpeg" alt="Logo da Clínica Neuro" class="logo" />
+
+      <h1>Clínica Neuro</h1>
+
+      <p>
+        A fisioterapia neurológica adulta é uma área da fisioterapia voltada para a
+        avaliação, prevenção e reabilitação de pacientes adultos com alterações no
+        sistema nervoso, buscando promover mais autonomia, funcionalidade, equilíbrio
+        e qualidade de vida.
+      </p>
+    </header>
+
+    <section class="sobre">
+      <h2>Quem somos</h2>
+      <p>
+        A Clínica Neuro é uma clínica de fisioterapia com foco em fisioterapia
+        neurológica adulta. Nosso atendimento é voltado ao cuidado humanizado,
+        à reabilitação funcional e ao acompanhamento individualizado de cada paciente,
+        sempre com o objetivo de contribuir para uma melhor recuperação e bem-estar.
+      </p>
+    </section>
+
+    <section class="acoes">
+      <h2>Atendimento e serviços</h2>
+      <div class="botoes">
+        <button class="botao-acao" onclick="mostrarPainel('agendar')">
+          Agendar horário
+        </button>
+
+        <button class="botao-acao" onclick="mostrarPainel('equipe')">
+          Falar com a equipe da clínica
+        </button>
+
+        <button class="botao-acao" onclick="mostrarPainel('consultar')">
+          Ver horários agendados
+        </button>
+      </div>
+    </section>
+
+    <section id="agendar" class="painel">
+      <h2>Agendar horário</h2>
+      <p>Preencha os dados abaixo para registrar um horário de atendimento.</p>
+
+      <form id="formAgendar">
+        <div>
+          <label for="nomeAgendar">Nome completo</label>
+          <input type="text" id="nomeAgendar" required />
+        </div>
+
+        <div>
+          <label for="telefoneAgendar">Telefone</label>
+          <input type="text" id="telefoneAgendar" required />
+        </div>
+
+        <div>
+          <label for="emailAgendar">E-mail</label>
+          <input type="email" id="emailAgendar" required />
+        </div>
+
+        <div>
+          <label for="horarioAgendar">Horário desejado</label>
+          <input type="text" id="horarioAgendar" placeholder="Ex: 13:30" required />
+        </div>
+
+        <button type="submit" class="btn-enviar">Confirmar agendamento</button>
+      </form>
+
+      <div id="mensagemAgendamento" class="mensagem" style="display: none;"></div>
+    </section>
+
+    <section id="equipe" class="painel">
+      <h2>Falar com a equipe da clínica</h2>
+      <p>
+        Entre em contato com nossa equipe para tirar dúvidas, solicitar orientações
+        ou obter mais informações sobre o atendimento.
+      </p>
+
+      <div class="resultado">
+        <strong>Contato da equipe:</strong><br />
+        Telefone: (14) 99999-9999<br />
+        E-mail: contato@clinicaneuro.com<br />
+        Horário de atendimento: Segunda a sexta, das 08h às 18h
+      </div>
+    </section>
+
+    <section id="consultar" class="painel">
+      <h2>Ver horários agendados</h2>
+      <p>
+        Informe os mesmos dados usados no cadastro para consultar o horário agendado.
+      </p>
+
+      <form id="formConsultar">
+        <div>
+          <label for="nomeConsultar">Nome completo</label>
+          <input type="text" id="nomeConsultar" required />
+        </div>
+
+        <div>
+          <label for="telefoneConsultar">Telefone</label>
+          <input type="text" id="telefoneConsultar" required />
+        </div>
+
+        <div>
+          <label for="emailConsultar">E-mail</label>
+          <input type="email" id="emailConsultar" required />
+        </div>
+
+        <button type="submit" class="btn-enviar">Consultar horário</button>
+      </form>
+
+      <div id="resultadoConsulta" class="resultado" style="display: none;"></div>
+    </section>
+
+    <footer>
+      Clínica Neuro • Fisioterapia Neurológica Adulta
+    </footer>
+  </div>
+
+  <script>
+    function mostrarPainel(id) {
+      const paineis = document.querySelectorAll(".painel");
+      paineis.forEach((painel) => painel.classList.remove("ativo"));
+
+      document.getElementById(id).classList.add("ativo");
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("formAgendar").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nomeAgendar").value.trim();
+      const telefone = document.getElementById("telefoneAgendar").value.trim();
+      const email = document.getElementById("emailAgendar").value.trim();
+      const horario = document.getElementById("horarioAgendar").value.trim();
+
+      const dadosAgendamento = {
+        nome,
+        telefone,
+        email,
+        horario
+      };
+
+      localStorage.setItem("agendamentoClinicaNeuro", JSON.stringify(dadosAgendamento));
+
+      const mensagem = document.getElementById("mensagemAgendamento");
+      mensagem.style.display = "block";
+      mensagem.innerHTML = `
+        Agendamento registrado com sucesso.<br>
+        <strong>Paciente:</strong> ${nome}<br>
+        <strong>Horário:</strong> ${horario}
+      `;
+
+      this.reset();
+    });
+
+    document.getElementById("formConsultar").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nomeConsultar").value.trim();
+      const telefone = document.getElementById("telefoneConsultar").value.trim();
+      const email = document.getElementById("emailConsultar").value.trim();
+
+      const dadosSalvos = JSON.parse(localStorage.getItem("agendamentoClinicaNeuro"));
+      const resultado = document.getElementById("resultadoConsulta");
+
+      if (
+        dadosSalvos &&
+        dadosSalvos.nome === nome &&
+        dadosSalvos.telefone === telefone &&
+        dadosSalvos.email === email
+      ) {
+        resultado.style.display = "block";
+        resultado.innerHTML = `
+          <strong>Agendamento encontrado:</strong><br>
+          Nome: ${dadosSalvos.nome}<br>
+          Telefone: ${dadosSalvos.telefone}<br>
+          E-mail: ${dadosSalvos.email}<br>
+          Horário agendado: ${dadosSalvos.horario}
+        `;
+      } else {
+        resultado.style.display = "block";
+        resultado.innerHTML = `
+          Nenhum agendamento foi encontrado com os dados informados.
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

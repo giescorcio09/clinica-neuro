@@ -1,0 +1,4 @@
+.botao-acao:hover {
+  background: linear-gradient(135deg, #143846, #1c4f61);
+  transform: translateY(-4px) scale(1.02);
+}
